@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import { createStore } from './store'
 import { Counter } from '../Counter'
 import { counter } from '../reducers'
@@ -10,7 +10,7 @@ export class OkuxApp extends React.Component<any, any> {
   constructor(props) {
     super(props)
     this.state = { value: store.getState() }
-    store.on("actionDone", () => {
+    store.on('actionDone', () => {
       this._onChange()
     })
   }
@@ -23,11 +23,10 @@ export class OkuxApp extends React.Component<any, any> {
   render() {
     return (
       <Counter
-        value={ this.state.value }
-        onIncrement={ () => this.dispatch(actions.increment) }
-        onDecrement={ () => this.dispatch(actions.decrement) }
+        value={this.state.value}
+        onIncrement={() => this.dispatch(actions.increment)}
+        onDecrement={() => this.dispatch(actions.decrement)}
       />
     )
   }
 }
-

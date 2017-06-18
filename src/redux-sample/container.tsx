@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 })
 
 const CounterContainer = (props) => (
-  <Counter value={props.value} onIncrement={ props.onIncrement} onDecrement={props.onDecrement}/>
+  <Counter value={props.value} onIncrement={props.onIncrement} onDecrement={props.onDecrement}/>
 )
 
-export const App = connect(mapStateToProps,mapDispatchToProps)(CounterContainer)
+export const App = connect(mapStateToProps, mapDispatchToProps)(CounterContainer)

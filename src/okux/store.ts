@@ -1,7 +1,7 @@
 import { EventEmitter } from 'eventemitter3'
 import { Action } from '../actions'
 
- class Store extends EventEmitter {
+class Store extends EventEmitter {
   private state: number
   private dispatcher: EventEmitter
   constructor(dispatcher, reducer) {
@@ -10,7 +10,7 @@ import { Action } from '../actions'
     this.state = 0 // ここで初期化じゃなくてreducerのinitialStateもってきたい
     dispatcher.on('action', (action) => {
       this.state = reducer(this.state, action)
-      this.emit("actionDone")
+      this.emit('actionDone')
     })
   }
   getState() {
@@ -21,7 +21,7 @@ import { Action } from '../actions'
   }
 }
 
-type Reducer = (state: any, action: Action) => any
+type Reducer = (state: any, action: Action) => {}
 export const createStore = (reducer: Reducer): Store => {
   const dispatcher = new EventEmitter()
   const store = new Store(dispatcher, reducer)
