@@ -4,6 +4,7 @@ import { App } from './redux-sample/App';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import {counter} from './redux-sample/reducers'
+import { Component } from './okux/component'
 
 
 const store = createStore(counter)
@@ -16,6 +17,6 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <div>建設中</div>,
+  <Component />,
   document.getElementById('okux')
 );

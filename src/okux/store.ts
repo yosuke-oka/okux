@@ -1,17 +1,22 @@
 import { EventEmitter } from 'eventemitter3'
 
 export class Store extends EventEmitter {
-  private count: number
+  private value: number
   constructor(dispatcher) {
     super()
-    this.count = 0
-    dispatcher.on("countUp", this.onCountUp.bind(this))
+    this.value = 0
+    dispatcher.on("increment", this.onIncrement.bind(this))
+    dispatcher.on("decrement", this.onIncrement.bind(this))
   }
-  getCount() {
-    return this.count
+  getValue() {
+    return this.value
   }
-  onCountUp(count) {
-    this.count = count
-    this.emit("change!")
+  onIncrement(value) {
+    this.value = value
+    this.emit("increment")
+  }
+  onDecrement(value) {
+    this.value = value
+    this.emit("decrement")
   }
 }

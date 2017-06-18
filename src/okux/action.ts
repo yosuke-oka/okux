@@ -3,7 +3,10 @@ export class ActionCreator {
   constructor(dispatcher) {
     this.dispatcher = dispatcher
   }
-  countUp(data) {
-    this.dispatcher.emit("countup", data)
+  increment(value) {
+    this.dispatcher.emit("increment", value)
+  }
+  decrement(value) {
+    this.dispatcher.emit("decrement", value)
   }
 }
