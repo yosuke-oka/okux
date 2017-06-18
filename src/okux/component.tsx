@@ -4,9 +4,9 @@ import { Store } from './store'
 import { EventEmitter } from 'eventemitter3'
 import { Counter } from '../redux-sample/Counter'
 
-let dispatcher = new EventEmitter()
-let action = new ActionCreator(dispatcher)
-let store = new Store(dispatcher)
+const dispatcher = new EventEmitter()
+const action = new ActionCreator(dispatcher)
+const store = new Store(dispatcher)
 
 export class Component extends React.Component<any, any> {
   constructor(props) {
