@@ -1,6 +1,12 @@
 import * as React from 'react'
 
-export const Counter = ({value, onIncrement, onDecrement}) => (
+interface CounterProps {
+  value: number,
+  onIncrement: () => void,
+  onDecrement: () => void,
+}
+
+export const Counter = ({value, onIncrement, onDecrement}: CounterProps) => (
   <div>
     Clicked: {value} times
         {' '}

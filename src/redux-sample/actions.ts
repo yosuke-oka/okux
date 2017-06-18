@@ -1,2 +1,3 @@
-export const increment = () => ({ type: 'INCREMENT' })
-export const decrement = () => ({ type: 'DECREMENT' })
+type Action = { type: String }
+export const increment = (): Action => ({ type: 'INCREMENT' })
+export const decrement = (): Action => ({ type: 'DECREMENT' })

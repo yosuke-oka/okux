@@ -2,7 +2,7 @@ import * as React from "react"
 import { ActionCreator } from './action'
 import { Store } from './store'
 import { EventEmitter } from 'eventemitter3'
-import { Counter } from '../redux-sample/Counter'
+import { Counter } from '../Counter'
 
 const dispatcher = new EventEmitter()
 const action = new ActionCreator(dispatcher)
@@ -23,10 +23,10 @@ export class Component extends React.Component<any, any> {
     this.setState({ count: store.getValue() })
   }
   increment() {
-    action.increment(this.state.count + 1)
+    action.increment()
   }
   decrement(){
-    action.decrement(this.state.count - 1)
+    action.decrement()
   }
   render() {
     return (

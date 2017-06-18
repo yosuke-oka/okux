@@ -11,12 +11,12 @@ export class Store extends EventEmitter {
   getValue() {
     return this.value
   }
-  onIncrement(value) {
-    this.value = value
+  onIncrement() {
+    this.value += 1
     this.emit("increment")
   }
-  onDecrement(value) {
-    this.value = value
+  onDecrement() {
+    this.value -= 1
     this.emit("decrement")
   }
 }
