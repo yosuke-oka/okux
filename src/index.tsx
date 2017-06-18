@@ -1,22 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App } from './redux-sample/App';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import {counter} from './reducers'
-import { Component } from './okux/component'
-
-
-const store = createStore(counter)
+import { OkuxApp } from './okux/component'
+import { ReduxApp } from './redux-sample/ReduxApp'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ReduxApp />,
   document.getElementById('redux')
 );
 
 ReactDOM.render(
-  <Component />,
+  <OkuxApp />,
   document.getElementById('okux')
 );

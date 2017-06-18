@@ -2,19 +2,19 @@ import { EventEmitter } from 'eventemitter3'
 import { Action } from '../actions'
 
  class Store extends EventEmitter {
-  private value: number
+  private state: number
   private dispatcher: EventEmitter
   constructor(dispatcher, reducer) {
     super()
     this.dispatcher = dispatcher
-    this.value = 0
+    this.state = 0
     dispatcher.on('action', (action) => {
-      this.value = reducer(this.value, action)
+      this.state = reducer(this.state, action)
       this.emit("actionDone")
     })
   }
-  getValue() {
-    return this.value
+  getState() {
+    return this.state
   }
 }
 

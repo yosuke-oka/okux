@@ -8,16 +8,16 @@ import * as actions from '../actions'
 const dispatcher = new EventEmitter()
 const store = createStore(counter, dispatcher)
 
-export class Component extends React.Component<any, any> {
+export class OkuxApp extends React.Component<any, any> {
   constructor(props) {
     super(props)
-    this.state = { count: store.getValue() }
+    this.state = { value: store.getState() }
     store.on("actionDone", () => {
       this._onChange()
     })
   }
   _onChange() {
-    this.setState({ count: store.getValue() })
+    this.setState({ value: store.getState()})
   }
   dispatch(action) {
     dispatcher.emit('action', action())
@@ -25,7 +25,7 @@ export class Component extends React.Component<any, any> {
   render() {
     return (
       <Counter
-        value={ this.state.count }
+        value={ this.state.value }
         onIncrement={ () => this.dispatch(actions.increment) }
         onDecrement={ () => this.dispatch(actions.decrement) }
       />
