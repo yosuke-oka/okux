@@ -1,5 +1,5 @@
 import { EventEmitter } from 'eventemitter3'
-import { ActionType } from './type'
+import { Action } from '../actions'
 
  class Store extends EventEmitter {
   private value: number
@@ -18,7 +18,7 @@ import { ActionType } from './type'
   }
 }
 
-type Reducer = (state: any, action: ActionType) => any
+type Reducer = (state: any, action: Action) => any
 export const createStore = (reducer: Reducer, dispatcher): Store => {
   //const dispatcher = new EventEmitter()
   const store = new Store(dispatcher, reducer)

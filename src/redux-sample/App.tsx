@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Counter } from '../Counter'
-import * as actions from './actions'
+import * as actions from '../actions'
 
 const mapDispatchToProps = (dispatch) => (
   {

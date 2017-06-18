@@ -1,12 +1,11 @@
 import * as React from "react"
-import { ActionCreator } from './action'
 import { createStore } from './store'
 import { EventEmitter } from 'eventemitter3'
 import { Counter } from '../Counter'
 import { counter } from '../reducers'
+import * as actions from '../actions'
 
 const dispatcher = new EventEmitter()
-const action = new ActionCreator(dispatcher)
 const store = createStore(counter, dispatcher)
 
 export class Component extends React.Component<any, any> {
@@ -20,18 +19,15 @@ export class Component extends React.Component<any, any> {
   _onChange() {
     this.setState({ count: store.getValue() })
   }
-  increment() {
-    action.increment()
-  }
-  decrement(){
-    action.decrement()
+  dispatch(action) {
+    dispatcher.emit('action', action())
   }
   render() {
     return (
       <Counter
         value={ this.state.count }
-        onIncrement={ this.increment.bind(this) }
-        onDecrement={ this.decrement.bind(this) }
+        onIncrement={ () => this.dispatch(actions.increment) }
+        onDecrement={ () => this.dispatch(actions.decrement) }
       />
     )
   }
