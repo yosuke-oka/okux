@@ -15,6 +15,9 @@ export class Component extends React.Component<any, any> {
     store.on("increment", () => {
       this._onChange()
     })
+    store.on("decrement", () => {
+      this._onChange()
+    })
   }
   _onChange() {
     this.setState({ count: store.getValue() })

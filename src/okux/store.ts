@@ -6,7 +6,7 @@ export class Store extends EventEmitter {
     super()
     this.value = 0
     dispatcher.on("increment", this.onIncrement.bind(this))
-    dispatcher.on("decrement", this.onIncrement.bind(this))
+    dispatcher.on("decrement", this.onDecrement.bind(this))
   }
   getValue() {
     return this.value
