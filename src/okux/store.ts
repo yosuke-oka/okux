@@ -7,7 +7,7 @@ import { Action } from '../actions'
   constructor(dispatcher, reducer) {
     super()
     this.dispatcher = dispatcher
-    this.state = 0
+    this.state = 0 // ここで初期化じゃなくてreducerのinitialStateもってきたい
     dispatcher.on('action', (action) => {
       this.state = reducer(this.state, action)
       this.emit("actionDone")
@@ -16,11 +16,14 @@ import { Action } from '../actions'
   getState() {
     return this.state
   }
+  getDispatcher() {
+    return this.dispatcher
+  }
 }
 
 type Reducer = (state: any, action: Action) => any
-export const createStore = (reducer: Reducer, dispatcher): Store => {
-  //const dispatcher = new EventEmitter()
+export const createStore = (reducer: Reducer): Store => {
+  const dispatcher = new EventEmitter()
   const store = new Store(dispatcher, reducer)
   return store
 }

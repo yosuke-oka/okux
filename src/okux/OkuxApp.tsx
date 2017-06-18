@@ -1,12 +1,10 @@
 import * as React from "react"
 import { createStore } from './store'
-import { EventEmitter } from 'eventemitter3'
 import { Counter } from '../Counter'
 import { counter } from '../reducers'
 import * as actions from '../actions'
 
-const dispatcher = new EventEmitter()
-const store = createStore(counter, dispatcher)
+const store = createStore(counter)
 
 export class OkuxApp extends React.Component<any, any> {
   constructor(props) {
@@ -20,7 +18,7 @@ export class OkuxApp extends React.Component<any, any> {
     this.setState({ value: store.getState()})
   }
   dispatch(action) {
-    dispatcher.emit('action', action())
+    store.getDispatcher().emit('action', action())
   }
   render() {
     return (
