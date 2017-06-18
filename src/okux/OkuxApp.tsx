@@ -6,7 +6,11 @@ import * as actions from '../actions'
 
 const store = createStore(counter)
 
-export class OkuxApp extends React.Component<any, any> {
+interface CounterState {
+  value: number
+}
+
+export class OkuxApp extends React.Component<{}, CounterState> {
   constructor(props) {
     super(props)
     this.state = { value: store.getState() }
