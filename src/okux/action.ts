@@ -4,9 +4,9 @@ export class ActionCreator {
     this.dispatcher = dispatcher
   }
   increment() {
-    this.dispatcher.emit({ type: 'INCREMENT' })
+    this.dispatcher.emit('action', { type: 'INCREMENT' })
   }
   decrement() {
-    this.dispatcher.emit("decrement")
+    this.dispatcher.emit("action", { type: 'DECREMENT' })
   }
 }

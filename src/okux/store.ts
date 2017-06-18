@@ -1,30 +1,26 @@
 import { EventEmitter } from 'eventemitter3'
 import { ActionType } from './type'
 
-export class Store extends EventEmitter {
+ class Store extends EventEmitter {
   private value: number
-  constructor(dispatcher) {
+  private dispatcher: EventEmitter
+  constructor(dispatcher, reducer) {
     super()
+    this.dispatcher = dispatcher
     this.value = 0
-    dispatcher.on({type:"INCREMENT"}, this.onIncrement.bind(this))
-    dispatcher.on("decrement", this.onDecrement.bind(this))
+    dispatcher.on('action', (action) => {
+      this.value = reducer(this.value, action)
+      this.emit("actionDone")
+    })
   }
   getValue() {
     return this.value
   }
-  onIncrement() {
-    this.value += 1
-    this.emit("increment")
-  }
-  onDecrement() {
-    this.value -= 1
-    this.emit("decrement")
-  }
 }
 
 type Reducer = (state: any, action: ActionType) => any
-export const createStore = (reducer: Reducer): Store => {
-  const dispatcher = new EventEmitter()
-  const store = new Store(dispatcher)
+export const createStore = (reducer: Reducer, dispatcher): Store => {
+  //const dispatcher = new EventEmitter()
+  const store = new Store(dispatcher, reducer)
   return store
 }
