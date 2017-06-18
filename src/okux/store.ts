@@ -2,12 +2,12 @@ import { EventEmitter } from 'eventemitter3'
 import { Action } from '../actions'
 
 class Store extends EventEmitter {
-  private state: number
+  private state: any // ここの型、reducerから取る？
   private dispatcher: EventEmitter
   constructor(dispatcher, reducer) {
     super()
     this.dispatcher = dispatcher
-    this.state = 0 // ここで初期化じゃなくてreducerのinitialStateもってきたい
+    this.state = reducer(this.state, {type:''}) // initialStateがほしい
     dispatcher.on('action', (action) => {
       this.state = reducer(this.state, action)
       this.emit('actionDone')
