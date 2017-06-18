@@ -4,7 +4,7 @@ export class ActionCreator {
     this.dispatcher = dispatcher
   }
   increment() {
-    this.dispatcher.emit("increment")
+    this.dispatcher.emit({ type: 'INCREMENT' })
   }
   decrement() {
     this.dispatcher.emit("decrement")

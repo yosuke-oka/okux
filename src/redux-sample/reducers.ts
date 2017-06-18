@@ -1,6 +1,7 @@
 type Action = { type: String }
+type State = number
 
-export const counter = (state = 0, action: Action) => {
+export const counter = (state: State = 0, action: Action): State => {
   switch (action.type) {
     case 'INCREMENT':
       return state + 1
