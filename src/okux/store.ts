@@ -4,11 +4,11 @@ import { Action } from '../actions'
 class Store extends EventEmitter {
   private state: any // ここの型、reducerから取る？
   private dispatcher: EventEmitter
-  constructor(dispatcher, reducer) {
+  constructor(reducer) {
     super()
-    this.dispatcher = dispatcher
+    this.dispatcher = new EventEmitter()
     this.state = reducer(this.state, {type:''}) // initialStateがほしい
-    dispatcher.on('action', (action) => {
+    this.dispatcher.on('action', (action) => {
       this.state = reducer(this.state, action)
       this.emit('actionDone')
     })
@@ -23,7 +23,5 @@ class Store extends EventEmitter {
 
 type Reducer = (state: any, action: Action) => {}
 export const createStore = (reducer: Reducer): Store => {
-  const dispatcher = new EventEmitter()
-  const store = new Store(dispatcher, reducer)
-  return store
+  return new Store(reducer)
 }
