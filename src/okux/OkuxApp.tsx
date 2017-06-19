@@ -23,13 +23,7 @@ const connect = (mapState, mapDispatch) => {
           }
       }
       _onChange() {
-        const dispatch = (action) => store.getDispatcher().emit('action', action)
-        //this.newProps = { ...this.props, ...mapState(store.getState())}
-        this.newProps = {
-           ...this.props,
-           ...mapState(store.getState()),
-           ...mapDispatch(dispatch),
-          }
+        Object.assign(this.newProps, mapState(store.getState()))
         this.setState(this.newProps)
       }
       render() {
