@@ -1,28 +1,9 @@
 import * as React from 'react'
 import { createStore } from './store'
-import { Counter } from '../Counter'
 import { counter } from '../reducers'
-import * as actions from '../actions'
+import { mapDispatchToProps, mapStateToProps, CounterContainer} from '../CounterContainer' 
 
 const store = createStore(counter)
-
-const mapDispatchToProps = (dispatch) => (
-  {
-    onIncrement: () => dispatch(actions.increment()),
-    onDecrement: () => dispatch(actions.decrement()),
-  }
-)
-
-const mapStateToProps = (state) => ({
-  value: state,
-})
-
-const CounterContainer = (props) => {
-  console.log(props)
-  return (
-    <Counter value={props.value} onIncrement={props.onIncrement} onDecrement={props.onDecrement}/>
-  )
-}
 
 //type MapState = (state: any) => { [key]:String }
 const connect = (mapState, mapDispatch) => {
